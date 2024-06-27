@@ -1,14 +1,29 @@
-// Update this page (the content is just a fallback if you fail and example)
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { Input } from "@/components/ui/input";
 
 const Index = () => {
+  const [name, setName] = useState("");
+  const { toast } = useToast();
+
+  const handleGreet = () => {
+    toast({
+      title: "Hello!",
+      description: `Hello, ${name}!`,
+    });
+  };
+
   return (
     <div className="h-screen w-screen flex items-center justify-center">
-      {/* Update with components here - default to put new layout sections as separate components in the components folder, and import them here */}
-      <div>
-        <h1 className="text-3xl text-center">Your Blank Canvas</h1>
-        <p className="text-center">
-          Chat with the agent to start making edits.
-        </p>
+      <div className="space-y-4">
+        <h1 className="text-3xl text-center">Greeting App</h1>
+        <Input
+          placeholder="Enter your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Button onClick={handleGreet}>Greet</Button>
       </div>
     </div>
   );
